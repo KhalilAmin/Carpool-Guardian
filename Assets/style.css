@@ -1,0 +1,17 @@
+body {
+    background-image: url("images/dust_scratches/dust_scratches.png");
+}
+.header {
+    border: solid;
+    background-color: lightslategray;
+}
+h1 {
+    color: coral;
+    text-align: center;
+    display: inline-block;
+    margin: 0px;
+    font-size: 38px;
+}
+.logo-element {
+    text-align: center;
+}
