@@ -2,8 +2,7 @@ body {
     background-image: url("images/dust_scratches/dust_scratches.png");
 }
 .header {
-    border: solid;
-    background-color: lightslategray;
+    margin-bottom: 20px;
 }
 h1 {
     color: coral;
@@ -14,4 +13,11 @@ h1 {
 }
 .logo-element {
     text-align: center;
+}
+.login {
+    text-align: center;
+}
+form {
+    display: inline-block;
+    text-align: left;
 }
