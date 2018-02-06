@@ -26,9 +26,27 @@
               </nav>
         </div>
     </div>
+    <div class="studentImage">Student:</div>
+    <div class="picture" id="capturePicture"></div>
 
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>    
-    <script src="assets/javascript.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>    
+<script src="assets/javascript.js"></script>
+
+<script>
+    // render the students image for teachers portal
+    var capturedImage = "assets/images/car.jpeg";
+    var div = $("<div>");
+    var image = $("<img>");
+    
+    function renderStudentImage(){
+        image.attr("src",capturedImage);
+        div.append(image);
+        $("#capturePicture").html(div);
+    }
+    renderStudentImage();
+</script>
+
+
 </body>
 </html>
