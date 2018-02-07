@@ -26,8 +26,11 @@
               </nav>
         </div>
     </div>
-    <div class="studentImage">Student:</div>
+    <div class="parentImage">Parent:</div>
     <div class="picture" id="capturePicture"></div>
+    <br>
+    <div class="studentImage">Student:</div>
+    <div class="pictures" id="studentPicture"></div>
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>    
@@ -39,12 +42,30 @@
     var div = $("<div>");
     var image = $("<img>");
     
-    function renderStudentImage(){
+    function renderCapturedImage(){
         image.attr("src",capturedImage);
         div.append(image);
         $("#capturePicture").html(div);
     }
-    renderStudentImage();
+
+    var studentOne = "assets/images/car.jpeg";
+    var studentTwo = "assets/images/car2.jpeg";
+    var studentThree = "assets/images/car3.jpeg";
+    var studentArray = [studentOne, studentTwo, studentThree];
+    
+
+    for (i=0; i < studentArray.length; i++) {
+        var divOne = $("<div>");
+        var imageStudent = $("<img>")
+        imageStudent.attr("src", studentArray[i]);
+        divOne.append(imageStudent);
+        $("#studentPicture").append(divOne);
+    }
+
+
+    renderCapturedImage();
+
+
 </script>
 
 
