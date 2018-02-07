@@ -4,13 +4,6 @@ body {
 .header {
     margin-bottom: 20px;
 }
-h1 {
-    color: coral;
-    text-align: center;
-    display: inline-block;
-    margin: 0px;
-    font-size: 38px;
-}
 .logo-element {
     text-align: center;
 }
