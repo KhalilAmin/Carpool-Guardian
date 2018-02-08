@@ -83,14 +83,10 @@
                                 <input class="form-control" id="license-id-input" type="text">
                             </div>
                             <div class="form-group">
-                                <label for="comment-input">Photo Vertification(s):</label>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                            </div>
-                            <button class="btn btn-default" id="add-user" type="upload">Upload</button>
+                                    <label for="exampleInputFile">Uploaded Photos:</label>
+                                    <div class="uploadedPhotos" id="uploadedImages"></div>
+                                    <input type="file" id="exampleInputFile">
+                                  </div>
                         </form>
                     </div>
                 </div>
@@ -130,14 +126,17 @@
     </div>
     </div>
     <script src="https://code.jquery.com/jquery.js"></script>
-    <!--<script>
+    <script>
         var config = {
-            apiKey: "AIzaSyA5eYKsB8T2q6rMGdKSvac6eQsWTzsZEjE",
-            authDomain: "fir-recent-user.firebaseapp.com",
-            databaseURL: "https://fir-recent-user.firebaseio.com",
-            storageBucket: "fir-recent-user.appspot.com"
-        };
+            apiKey: "AIzaSyBgbVsxVcSiEnm0UEm1fBcW9cTZl_KUgFo",
+            authDomain: "carpoolguardian.firebaseapp.com",
+            databaseURL: "https://carpoolguardian.firebaseio.com",
+            projectId: "carpoolguardian",
+            storageBucket: "carpoolguardian.appspot.com",
+            messagingSenderId: "594175940867"
+          };
         firebase.initializeApp(config);
+        
         var database = firebase.database();
         var name = "";
         var email = "";
@@ -150,6 +149,6 @@
             $("#comment-display").text(snapshot.val().comment);
         }, function (errorObject) {
         });
-    </script>-->
+    </script>
 </body>
 </html>
