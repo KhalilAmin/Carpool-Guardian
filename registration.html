@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>CarPool-Guardian Registration Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+<body>
+    <div class="container">
+        <br>
+            <div class="header">
+                <div class="logo-element">
+                    <img src="assets/Images/60a97309-046f-4a8b-b342-a3588e7e80bf.png">
+                </div>
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav">
+                        <li><a href="profile.html">Home</a></li>
+                        <li><a href="settings.html">Settings</a></li>
+                        <li><a href="teacherportal.html">Teacher Portal</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        <div class="row">
+            <!-- Registration Form-->
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Student's General Information</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="name-input">First, Middle, Last Name:</label>
+                                <input class="form-control" id="name-input" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="email-input">Phyiscal Address:</label>
+                                <input class="form-control" id="address-input" type="address">
+                            </div>
+                            <div class="form-group">
+                                <label for="email-input">Email Address:</label>
+                                <input class="form-control" id="email-input" type="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="age-input">Age:</label>
+                                <input class="form-control" id="age-input" type="number">
+                            </div>
+                            <div class="form-group">
+                                <label for="special-notes-input">Special Notes:</label>
+                                <input class="form-control" id="special-notes-input" type="text">
+                            </div>
+                            <button class="btn btn-default" id="add-user" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Transportation Information</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="aurthorize-input">Name of Parents/Guardians approved for Transportation:</label>
+                                <input class="form-control" id="name-input" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="approved-input">In Case of Emergency Contact:</label>
+                                <input class="form-control" id="emergency-contact-input" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="age-input">License Identification of Vehicle(s) for Pick-Up:</label>
+                                <input class="form-control" id="license-id-input" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="age-input">TBD:</label>
+                                <input class="form-control" id="license-id-input" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="comment-input">Photo Vertification(s):</label>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                            </div>
+                            <button class="btn btn-default" id="add-user" type="upload">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Medical Information</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="name-input">Allergic Reactions:</label>
+                                <input class="form-control" id="name-input" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="email-input">Medication/Dosage:</label>
+                                <input class="form-control" id="email-input" type="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="age-input">TBD:</label>
+                                <input class="form-control" id="age-input" type="number">
+                            </div>
+                            <div class="form-group">
+                                <label for="comment-input">Special Notes:</label>
+                                <textarea class="form-control" rows="5" id="special-notes-input"></textarea>
+                            </div>
+                            <button class="btn btn-default" id="add-user" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!--<script>
+        var config = {
+            apiKey: "AIzaSyA5eYKsB8T2q6rMGdKSvac6eQsWTzsZEjE",
+            authDomain: "fir-recent-user.firebaseapp.com",
+            databaseURL: "https://fir-recent-user.firebaseio.com",
+            storageBucket: "fir-recent-user.appspot.com"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
+        var name = "";
+        var email = "";
+        var age = 0;
+        var comment = "";
+        database.ref().on("value", function (snapshot) {
+            $("#name-display").text(snapshot.val().name);
+            $("#email-display").text(snapshot.val().email);
+            $("#age-display").text(snapshot.val().age);
+            $("#comment-display").text(snapshot.val().comment);
+        }, function (errorObject) {
+        });
+    </script>-->
+</body>
+</html>
