@@ -11,6 +11,7 @@ body {
     text-align: center;
 }
 form {
+<<<<<<< HEAD
     /* display: inline-block; */
     text-align: left;
 }
@@ -29,4 +30,8 @@ form {
 }
 .customheadheight {
     height: 80px;
+=======
+    display: inline-block;
+    /* text-align: left; */
+>>>>>>> 772f00aa5a8e12662fc0dad96bc4acc7b8fca62d
 }
