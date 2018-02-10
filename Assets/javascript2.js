@@ -34,6 +34,72 @@ $(document).ready(function() {
         return api_secret;
     };
     
+
+        //console.log(blah);
+
+    // var ctx = document.getElementById('canvas').getContext('2d');
+    // var img = new Image;
+    // img.onload = function() {
+    //     ctx.drawImage(img, 20,20);
+    //     alert('the image is drawn');
+    // }
+    // img.src = URL.createObjectURL(e.target.files[0]);
+
+    // function getBase64FromImageUrl(url) {
+    //     var img = new Image();
+    
+    //     img.setAttribute('crossOrigin', 'anonymous');
+    
+    //     img.onload = function () {
+    //         var canvas = document.createElement("canvas");
+    //         canvas.width =this.width;
+    //         canvas.height =this.height;
+    
+    //         var ctx = canvas.getContext("2d");
+    //         ctx.drawImage(this, 0, 0);
+    
+    //         var dataURL = canvas.toDataURL("image/png");
+    
+    //         faceDetect(dataURL.replace(/^data:image\/(png|jpg);base64,/, ""));
+    //     };
+    
+    //     img.src = url;
+    // }
+
+//getBase64FromImageUrl("Assets/Images/someguy.png");
+
+
+    function getBase64Image(imagepath) {
+        var image = new Image();
+        image.src = imagepath
+        
+        var canvas = document.createElement("canvas");
+        canvas.width = image.width;
+        canvas.height = image.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(image, 0, 0);
+        var dataURL = canvas.toDataURL("image/png");
+
+   
+
+        return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+      }
+
+    function imageTest() {
+        var imagepath = "Assets/Images/someguy.png"
+
+        base64 = getBase64Image(imagepath);
+
+
+        console.log(base64)
+        //faceDetect(base64);
+        return base64;
+
+    }
+ 
+
+
+//"Assets/Images/someguy.png"
     // function faceDetect(image) {  
        
     //     //need to figure out inputs and outputs
@@ -62,8 +128,12 @@ $(document).ready(function() {
     //     };
     // };
 
+
+    
     function faceDetect(image) {  
-       
+
+
+   
         //need to figure out inputs and outputs
         var api_key = getFaceAPIKey();
         var api_secret = getFaceAPISecret();
@@ -116,32 +186,36 @@ $(document).ready(function() {
         var conecount = 3;
         var familycount = 8;
 
-        console.log(database);
+        var img = imageTest();
+        console.log(img);
+        database.ref("families/0").update({
+            approved: img
+        });
 
-        // database.ref().once("value").then(function(snapshot) {
-        //     data = snapshot.val();
-        //     console.log(data);
-        // });
+        database.ref().once("value").then(function(snapshot) {
+            data = snapshot.val();
+            console.log(data.families[0].approved[0]);
+        });
 
-        for (var i = 0; i<conecount; i++) {
-            database.ref("cones/" + i).set({
-                token: ""
-            });
-        }
+        // for (var i = 0; i<conecount; i++) {
+        //     database.ref("cones/" + i).set({
+        //         token: ""
+        //     });
+        // }
 
-        for (var j=0; j<familycount; j++) {
-            database.ref("families/" + j).set({
-                approved: [""],
-                children: [""]
-            });
-        }
+        // for (var j=0; j<familycount; j++) {
+        //     database.ref("families/" + j).set({
+        //         approved: [""],
+        //         children: [""]
+        //     });
+        // }
         
     };
 
 
 
     var img = $('img');
-    img.css('display', 'none');
+    //img.css('display', 'none');
     
     $('#upload-button').click(function(){
       $('#my-custom-design-upload').trigger('click');                 
@@ -167,7 +241,7 @@ $(document).ready(function() {
     
     document.getElementById('my-custom-design-upload').addEventListener('change', readFile, false);
 
-//buildDB();
+buildDB();
  
 //faceDetect();
 

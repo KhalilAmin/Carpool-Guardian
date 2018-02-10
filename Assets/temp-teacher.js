@@ -12,6 +12,8 @@ $(document).ready(function() {
 
     var database = firebase.database();
 
+    var driverarr = 
+
 
     var image_file1 = "https://vignette.wikia.nocookie.net/starwars/images/2/20/LukeTLJ.jpg/revision/latest/scale-to-width-down/1000?cb=20170927034529";
     var image_file2 = "https://lumiere-a.akamaihd.net/v1/images/luke-skywalker-main_5a38c454_461eebf5.jpeg?region=0%2C0%2C1536%2C864&width=768";

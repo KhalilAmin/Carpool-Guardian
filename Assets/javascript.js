@@ -41,48 +41,36 @@ $(document).ready(function() {
       
     };
 
-    function compareFace(tokenarr) {
-
+    function compareFace() {
+        tokenarr = ['ef89e150e81f700ff383a167251ec0fb', 'feffd52e42ef5de30d0a424b2a9776fb']
         //need to compare the two tokens
         if (tokenarr.length > 1) {
-            var compareQueryURL = "https://api-us.faceplusplus.com/facepp/v3/compare?api_key=" + api_key + "&api_secret=" + api_secret + "&face_token1=" + tokenarr[0] + "&face_token2=" + tokenarr[1];
+            var compareQueryURL = "https://api-us.faceplusplus.com/facepp/v3/compare";
             $.ajax({
                 url: compareQueryURL,
-                method: "POST"
+                method: "POST",
+                data: {
+                    api_key: "Y7JHwFafWVDhHq_cLOCO-4jOOeu1m2iN",
+                    api_secret: "7cwfnSX5J18-iIvegIVcU10jwdR-vNbq",
+                    face_token1: tokenarr[0],
+                    face_token2: tokenarr[1]
+                }
             }).done(function(response) {
                 console.log(response);
             });      
-            clearInterval(timer);
         };
     };
 
+    compareFace();
 
-    
+
+
     //var timer = setInterval(compareFace, 3000);
     //facedetect(imagearr).then(function () {console.log(tokenarr)});//compareFace(tokenarr))
 
 
 
-    function getData() { 
-        var data; 
-        $.get("example.php", function(response) { 
-            data = response;
-         }); 
-         return data; 
-    } 
-    
-    var data = getData(); console.log("The data is: " + data);
 
-    getData(function (data) {
-        console.log("The data is: " + data); 
-    });
-
-
-    function getData(callback) {
-        $.get("example.php", function(response) {
-          callback(response);
-        });
-      }
     
 
 });
