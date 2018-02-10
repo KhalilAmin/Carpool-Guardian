@@ -28,33 +28,34 @@
               </nav>
         </div>
         <div class="row">
-            <div id="pickup-area" class="panel panel-default">
-                <div class="panel heading">
-                    <h3 class="panel-heading">Pickup Info:</h3>
-                    <button id=pickupadd class="btn btn-default btn-success pickupimageupload" type="submit">Add Pickup</button>
+                <div id="demo-area" class="panel panel-default">
+                    <div class="panel heading">
+                        <h3 class="panel-heading">Demo Upload:</h3>
+                    </div>
+                    <div id="demo-panel" class="panel-body">
+                        <div class=col-md-3>
+                            <input class="form-control" id="drivernumber" type="text" placeholder="Enter Driver Number">
+                            <!-- <button class="btn btn-default" id="adddriver" type="submit">Submit</button> -->
+                        </div>
+                        <div class=col-md-3>
+                            <form>
+                                <input class="btn btn-default" id="uploadbutton" type="button" value="Upload Image">
+                                <input class="btn btn-success" id="fileclick" type="file" style="display:none">
+                            </form>
+                            <img class="editimg" id="newimage" src="">
+                        </div>
+                    </div>
                 </div>
-                <div id="pickup-panel" class="panel-body">
 
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div id="students-area" class="panel panel-default">
-                <div class="panel heading">
-                    <h3 class="panel-heading">Student Info:</h3>
-                    <button id=childadd class="btn btn-default btn-success childimageupload" type="submit">Add Student</button>
-                </div>
-                <div id="student-panel" class="panel-body">  
                 
-                </div>
-            </div>
-        </div>
+            
+        </div>            
     </div>
-        
-                   
+
+       
 
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>    
-    <script src="assets/landing.js"></script>
+    <script src="assets/demo.js"></script>
 </body>
 </html>

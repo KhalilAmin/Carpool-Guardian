@@ -11,6 +11,22 @@ body {
     text-align: center;
 }
 form {
-    display: inline-block;
+    /* display: inline-block; */
     text-align: left;
+}
+
+.editimg {
+    height: 80px;
+    width: 75px;
+}
+
+.childdata {
+    height:34px;
+}
+
+#addchild {
+    text-align: right;
+}
+.customheadheight {
+    height: 80px;
 }
