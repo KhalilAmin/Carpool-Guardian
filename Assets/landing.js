@@ -13,9 +13,9 @@ $(document).ready(function() {
     var database = firebase.database();
 
     var id = sessionStorage.getItem("familyid");
-    console.log("ID", id);
-
     var students = [];
+
+
 
     function Student () {
 
@@ -204,27 +204,10 @@ $(document).ready(function() {
 
                     //At this point the child has been added to firebase
                     //The last thing we need to do is remove the newchild panel and replace it with the regular panel
-                    
-                    //getChild should just get ever
                     getChild();
 
                 }
             });
-
-        
-
-
-         
-    
-            // database.ref("families/0/children/" + firstname).set({
-            //     firstname: firstname,
-            //     lastname: $("#newstudent-lastname").val().trim(),
-            //     grade: $("#newstudent-gradeinput").val().trim(),
-            //     teacher: $("#newstudent-teacherinput").val().trim(),
-            //     age: $("#newstudent-ageinput").val().trim()
-            // });
-    
-            //newStudent(firstname);
         })
         
     };
@@ -247,10 +230,30 @@ $(document).ready(function() {
                     head.addClass("panel heading customheadheight");
                     panel.append(head);
 
-                        var headtext = $("<h4>");
-                        headtext.addClass("panel-heading");
-                        headtext.text(student.firstname + " " + student.lastname);
-                        head.append(headtext);
+                        var headrow = $("<div>");
+                        headrow.addClass("row");
+                        head.append(headrow);
+
+                        var headcolumn1 = $("<div>");
+                        headcolumn1.addClass("col-md-10");
+                        headrow.append(headcolumn1);
+
+                            var headtext = $("<h4>");
+                            headtext.addClass("panel-heading");
+                            headtext.attr("id", "studenttext")
+                            headtext.text(student.firstname + " " + student.lastname);
+                            headtext.attr("data-dbid", student.firstname)
+                            headcolumn1.append(headtext);
+
+                        var headcolumn2 = $("<div>");
+                        headcolumn2.addClass("col-md-2");
+                        headcolumn2.attr("id", "student-deletediv")
+                        headrow.append(headcolumn2);
+
+                            var headbutton = $("<button>");
+                            headbutton.addClass("btn btn-danger");
+                            headbutton.text("X");
+                            headcolumn2.append(headbutton);
 
                     var panelbody = $("<div>");
                     panelbody.addClass("panel-body");
@@ -471,27 +474,10 @@ $(document).ready(function() {
 
                     //At this point the child has been added to firebase
                     //The last thing we need to do is remove the newchild panel and replace it with the regular panel
-                    
-                    //getChild should just get ever
                     getPickup();
 
                 }
             });
-
-        
-
-
-         
-    
-            // database.ref("families/0/children/" + firstname).set({
-            //     firstname: firstname,
-            //     lastname: $("#newstudent-lastname").val().trim(),
-            //     grade: $("#newstudent-gradeinput").val().trim(),
-            //     teacher: $("#newstudent-teacherinput").val().trim(),
-            //     age: $("#newstudent-ageinput").val().trim()
-            // });
-    
-            //newStudent(firstname);
         })
         
     };
@@ -514,10 +500,32 @@ $(document).ready(function() {
                     head.addClass("panel heading customheadheight");
                     panel.append(head);
 
-                        var headtext = $("<h4>");
-                        headtext.addClass("panel-heading");
-                        headtext.text(pickup.firstname + " " + pickup.lastname);
-                        head.append(headtext);
+                        var headrow = $("<div>");
+                        headrow.addClass("row");
+                        head.append(headrow);
+
+                        var headcolumn1 = $("<div>");
+                        headcolumn1.addClass("col-md-10");
+                        headrow.append(headcolumn1);
+
+                            var headtext = $("<h4>");
+                            headtext.addClass("panel-heading");
+                            headtext.attr("id", "pickuptext")
+                            headtext.text(pickup.firstname + " " + pickup.lastname);
+                            headtext.attr("data-dbid", pickup.firstname)
+                            headcolumn1.append(headtext);
+
+                        var headcolumn2 = $("<div>");
+                        headcolumn2.addClass("col-md-2");
+                        headcolumn2.attr("id", "pickup-deletediv")
+                        headrow.append(headcolumn2);
+
+                            var headbutton = $("<button>");
+                            headbutton.addClass("btn btn-danger");
+                            headbutton.text("X");
+                            headcolumn2.append(headbutton);
+                            
+
 
                     var panelbody = $("<div>");
                     panelbody.addClass("panel-body");
@@ -577,64 +585,13 @@ $(document).ready(function() {
             pickuppanel.append(pickupdiv);
 
 
-        });      
-
-    
-
-        //console.log(student);
-
-        //students.push(student);
-        
+        });          
     };
 
-    function newFamily(id) {
+    function newFamily() {
 
-
-        database.ref("families/id").set({
-            id: id,
-            username: username,
-            password: password,
-            pickup: {},
-            children: {}
-        })
-
+        $("#familyid").text("Family ID: " + id);
     }
-
-
-    function initStudent(studentsarr) {
-
-        for (var i=0; i<studentsarr.length; i++) {
-            var student = new Student();
-            student.firstname = studentsarr[i][0];
-            student.lastname = studentsarr[i][1];
-            student.age = studentsarr[i][2];
-            student.grade = studentsarr[i][3];
-            student.teacher = studentsarr[i][4];
-            student.econtact.firstname = studentsarr[i][5];
-            student.econtact.lastname = studentsarr[i][6];
-            student.econtact.number = studentsarr[i][7];
-            student.image64 = (studentsarr[i][8]);
-
-    
-
-            database.ref("families/" + id + "/children").child(student.firstname).set(student)
-                    .then(addStudent(student));
-        }
-
-    };
-
-    
-    var student1 = ["Alf", "Tanner", "8", "LowerElementary", "Ms Karen", "Patrick", "Whalen", "704-574-4638", "Assets/Images/families/tanner/children/alf.png"]
-    var student2 = ["Mike", "Seaver", "16", "Sophmore", "Mr Jim", "Jason", "Seaver", "516-295-1294", "Assets/Images/families/seaver/children/child0.png"]
-    var studentsarr = [student1, student2];
-    
-    //initStudent(studentsarr);
-    //getChild()
-
-
-
- 
-
 
     function editStudent(studentfirst) {
 
@@ -803,8 +760,6 @@ $(document).ready(function() {
     function faceDetect(image, name) {
         var api_key = getFaceAPIKey();
         var api_secret = getFaceAPISecret();
-
-        //image = imagearr.pop()
         
         var detectQueryURL = "https://api-us.faceplusplus.com/facepp/v3/detect";
         
@@ -826,6 +781,73 @@ $(document).ready(function() {
         });
     };
 
+    ///////////////////////////////////////////////////////
+    function getWeather() {
+
+        database.ref("weather").once("value").then(function(snapshot) {
+
+            var data = snapshot.val();
+            var storedtime = data.storedtime;
+
+            var timenow = moment().unix();
+    
+            //the weather api docs say that you can't call the api more than once ever 4 hours
+            //so we store the weather data into firebase along with a timestamp - then we check if 4 hours has lapsed
+            if ((storedtime-timenow) < 0) {
+          
+                var key = 'bd5bfbc8a6860c03d4fa7bda85bbd629';
+  
+                 queryurl = "https://api.openweathermap.org/data/2.5/forecast?zip=28209&units=imperial&appid=" + key,
+
+                $.ajax({ 
+                    url : queryurl,
+                    method : "GET"
+                }).done(function(response) {
+                    
+
+                    var weathericon = $("<img>");
+                    var iconurl = "http://openweathermap.org/img/w/" + response.list[0].weather[0].icon +".png"
+                    var temp = response.list[0].main.temp 
+                    var newstoredtime = moment().add(4, 'hours').unix();
+
+                    database.ref("weather").update({
+                        iconurl: "http://openweathermap.org/img/w/" + response.list[0].weather[0].icon +".png",
+                        temp: response.list[0].main.temp, 
+                        storedtime: newstoredtime
+                    }).then(showWeather());
+                });
+            } else {
+                showWeather();
+            }        
+        });
+    };
+
+    function showWeather() {
+
+        database.ref("weather").once("value").then(function(snapshot) {
+
+            var data = snapshot.val();
+
+            var temp = data.temp;
+            var iconurl = data.iconurl;
+
+            var weather = $("#weather");
+
+            var weathericonspan = $("<span>");
+            weather.append(weathericonspan);
+
+            var weathericon = $("<img>");
+            weathericon.attr("src", iconurl);
+            weathericon.attr("alt", "weathericon");
+            weathericonspan.append(weathericon);
+
+            var weathertemp = $("<span>");
+            weathertemp.text(temp + String.fromCharCode(176));
+            weather.append(weathertemp);
+        });
+    }
+
+    ///////////////////////////////////////////////////////
     $(document).on("click", "#childadd", function() {
         event.preventDefault();
 
@@ -837,6 +859,21 @@ $(document).ready(function() {
 
         newPickup();
     });
+
+    $(document).on("click", "#student-deletediv", function() {
+        var firstdiv = $(this).parentsUntil("#studenttext");
+        var first = $(firstdiv[3]).attr("id");
+        database.ref("families/" + id + "/children/" + first).remove().then(getChild());
+    });
+
+    $(document).on("click", "#pickup-deletediv", function() {
+        var firstdiv = $(this).parentsUntil("#pickuptext");
+        var first = $(firstdiv[3]).attr("id");
+
+        database.ref("families/" + id + "/pickup/" + first).remove().then(getPickup());
+    });
+
+
 
 
     $(document).on("click", ".childedit", function() {
@@ -909,13 +946,8 @@ $(document).ready(function() {
     $(document).on("change", ".fileclick", readPickupFile);
 
 
-   // newFamily(id);
+    newFamily();
     getChild();
     getPickup();
-  
-    //I think the "change" here is the image being selected
-   // $("#fileclick").change(readFile);
-
-    //initPage();
-
+    getWeather();
 });

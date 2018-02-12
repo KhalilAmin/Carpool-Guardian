@@ -17,67 +17,69 @@ $(document).ready(function() {
     $(document).on("click", "#loginbutton", function(event){
         event.preventDefault();
 
-        console.log("here");
-        username = $("#username").val().trim();
-        password = $("#password").val().trim();
+        var username = $("#username").val().trim();
+        var password = $("#password").val().trim();
+
+        var successflag = false;
 
         database.ref("families").once("value").then(function(familiesSnapshot) {
             familiesSnapshot.forEach(function(familySnapshot) {
-                familyid = familySnapshot.val();
+                var familyid = familySnapshot.key
+                var data = familySnapshot.val();
 
-                console.log("USER", familyid.login.username);
 
-                if (username === familyid.login.username) {
+                if (username === data.login.username) {
+                    if (password === data.login.password) {
+                        sessionStorage.setItem("familyid", familyid);
+                        window.location = "file:///Users/pawhalen/Documents/Full%20Stack%20Flex/Carpool-Guardian/profile.html"
+                        //window.location = https://thatchcorduroy.github.io/Carpool-Guardian/profile.html
+                        successflag = true;
+                    }
 
-                    console.log("WE HAVE A MATCH ON ", familyid);
-                    sessionStorage.setItem("familyid", familyid);
-                    window.location = "file:///Users/pawhalen/Documents/Full%20Stack%20Flex/Carpool-Guardian/profile.html"
+
+                    // sessionStorage.setItem("familyid", familyid);
+                    // window.location = "file:///Users/pawhalen/Documents/Full%20Stack%20Flex/Carpool-Guardian/profile.html"
+                    // //window.location = https://thatchcorduroy.github.io/Carpool-Guardian/profile.html
+                    // console.log("Incorrect Username");
+                
                 }
             });
+            
+        }).then(function() {
+
+            if (successflag === false) {
+                console.log("Incorrect Username or Password")
+                errordiv = $("<div>")
+                errordiv.text("Incorrect Username or Password")
+                errordiv.attr("style", "color:red");
+                $("#login").append(errordiv)
+            }
         });
     });
 
     $(document).on("click", "#signupbutton", function() {
-        $("#login").empty();
-        var signup = $("#signup");
+        $("#signupbutton").hide();
 
-        var username = $("<input>");
-        username.addClass("form-control");
-        username.attr("id", "username")
-        username.attr("type", "text");
-        username.attr("placeholder", "Create Username");
-        signup.append(username);
-
-        var password = $("<input>");
-        password.addClass("form-control");
-        password.attr("id", "password")
-        password.attr("type", "text");
-        password.attr("placeholder", "Create Password");
-        signup.append(password);
+        $("#loginlabel").attr("id", "signinlabel");
+        var signinlabel = $("#signinlabel");
+        signinlabel.attr("for", "signinbutton");
 
         var familyid = $("<input>");
         familyid.addClass("form-control");
-        familyid.attr("id", "familyid")
         familyid.attr("type", "text");
-        familyid.attr("placeholder", "Create Family ID");
-        signup.append(familyid);
+        familyid.attr("id", "familyid");
+        familyid.attr("placeholder", "Family ID");
+        signinlabel.append(familyid);
 
-        var createuser = $("<button>");
-        createuser.attr("id", "createuser");
-        createuser.addClass("btn btn-default");
-        createuser.attr("type", "button");
-        createuser.attr("label", "Create User");
-        createuser.text("Create User");
-        signup.append(createuser);
-
+        var signinbutton = $("#loginbutton").attr("id", "signinbutton");
+        signinbutton.attr("value", "Sign In");
     });
 
-    $(document).on("click", "#createuser", function() {
+    $(document).on("click", "#signinbutton", function() {
         username = $("#username").val().trim();
         password = $("#password").val().trim();
         familyid = $("#familyid").val().trim();
 
-        console.log("CREATE USER");
         database.ref("families/" + familyid + "/login").update({
             username: username,
             password: password
@@ -85,19 +87,7 @@ $(document).ready(function() {
 
         sessionStorage.setItem("familyid", familyid);
         window.location = "file:///Users/pawhalen/Documents/Full%20Stack%20Flex/Carpool-Guardian/profile.html"
+        //window.location = https://thatchcorduroy.github.io/Carpool-Guardian/profile.html
 
     });
-
-
-
-       // database.ref("families").update({
-
-    
-
-        // database.ref("families").once("value").then(function(familiesSnapshot) {
-        //     familiesSnapshot.forEach(function(familySnapshot) {
-                
-        // })
-
-
 });

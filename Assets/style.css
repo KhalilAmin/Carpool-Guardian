@@ -4,6 +4,11 @@ body {
 .header {
     margin-bottom: 20px;
 }
+.banner-logo-element {
+    padding-top: 20px;
+    text-align: right;
+}
+
 .logo-element {
     text-align: center;
 }
@@ -11,7 +16,6 @@ body {
     text-align: center;
 }
 form {
-<<<<<<< HEAD
     /* display: inline-block; */
     text-align: left;
 }
@@ -30,8 +34,21 @@ form {
 }
 .customheadheight {
     height: 80px;
-=======
-    display: inline-block;
+    /* width: 90px; */
+    /* display: inline-block; */
     /* text-align: left; */
->>>>>>> 772f00aa5a8e12662fc0dad96bc4acc7b8fca62d
+}
+
+#weather {
+    text-align: right;
+    padding-top: 20px;
+}
+
+#loginlabel, #signinlabel {
+    display:block;
+    text-align:center;
+}
+
+#pickup-deletediv, #student-deleteddiv{
+    padding-left: 0px;
 }
