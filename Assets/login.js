@@ -31,24 +31,15 @@ $(document).ready(function() {
                 if (username === data.login.username) {
                     if (password === data.login.password) {
                         sessionStorage.setItem("familyid", familyid);
-                        window.location = "file:///Users/pawhalen/Documents/Full%20Stack%20Flex/Carpool-Guardian/profile.html"
-                        //window.location = https://thatchcorduroy.github.io/Carpool-Guardian/profile.html
+                        window.location = "https://khalilamin.github.io/Carpool-Guardian/profile.html"
                         successflag = true;
                     }
-
-
-                    // sessionStorage.setItem("familyid", familyid);
-                    // window.location = "file:///Users/pawhalen/Documents/Full%20Stack%20Flex/Carpool-Guardian/profile.html"
-                    // //window.location = https://thatchcorduroy.github.io/Carpool-Guardian/profile.html
-                    // console.log("Incorrect Username");
-                
                 }
             });
             
         }).then(function() {
 
             if (successflag === false) {
-                console.log("Incorrect Username or Password")
                 errordiv = $("<div>")
                 errordiv.text("Incorrect Username or Password")
                 errordiv.attr("style", "color:red");
@@ -86,8 +77,7 @@ $(document).ready(function() {
         })
 
         sessionStorage.setItem("familyid", familyid);
-        window.location = "file:///Users/pawhalen/Documents/Full%20Stack%20Flex/Carpool-Guardian/profile.html"
-        //window.location = https://thatchcorduroy.github.io/Carpool-Guardian/profile.html
+        window.location = "https://khalilamin.github.io/Carpool-Guardian/profile.html"
 
     });
 });
